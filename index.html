@@ -51,6 +51,17 @@
   </head>
   <body class="bg-[#0B1120] text-white overflow-x-hidden antialiased">
     <div id="root"></div>
+
+    <!-- Hidden form for Netlify robot/crawler to detect at build-time -->
+    <form name="contact" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <input type="text" name="businessName" />
+      <textarea name="message"></textarea>
+      <input type="text" name="bot-field" />
+    </form>
+
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
