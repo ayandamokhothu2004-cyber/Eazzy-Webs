@@ -68,10 +68,17 @@ export default function Contact() {
     setIsSubmitting(true);
 
     // Prepare URL-encoded form data for Netlify Forms
-    const bodyContent = new URLSearchParams({
+    const encode = (data: Record<string, string>) => {
+      return Object.keys(data)
+        .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
+        .join("&");
+    };
+
+    const bodyContent = encode({
       "form-name": "contact",
+      "bot-field": "",
       ...formData
-    }).toString();
+    });
 
     fetch("/", {
       method: "POST",
