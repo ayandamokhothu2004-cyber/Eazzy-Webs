@@ -70,7 +70,15 @@ export default function Portfolio() {
                 id={`project-card-${project.id}`}
               >
                 {/* Image Container with scale and hover zoom */}
-                <div className="relative overflow-hidden aspect-[16/10]" id={`project-img-wrapper-${project.id}`}>
+                <div 
+                  onClick={() => {
+                    if (project.demoUrl && project.demoUrl.startsWith("http")) {
+                      window.open(project.demoUrl, "_blank", "noopener,noreferrer");
+                    }
+                  }}
+                  className={`relative overflow-hidden aspect-[16/10] ${project.demoUrl && project.demoUrl.startsWith("http") ? "cursor-pointer" : ""}`} 
+                  id={`project-img-wrapper-${project.id}`}
+                >
                   <img
                     src={project.image}
                     alt={`${project.title} Preview`}
@@ -95,7 +103,14 @@ export default function Portfolio() {
                   </span>
                   
                   <div className="flex items-center justify-between gap-4 mb-4">
-                    <h3 className="text-xl sm:text-2xl font-black font-display text-white group-hover:text-brand-cyan transition-colors">
+                    <h3 
+                      onClick={() => {
+                        if (project.demoUrl && project.demoUrl.startsWith("http")) {
+                          window.open(project.demoUrl, "_blank", "noopener,noreferrer");
+                        }
+                      }}
+                      className={`text-xl sm:text-2xl font-black font-display text-white group-hover:text-brand-cyan transition-colors ${project.demoUrl && project.demoUrl.startsWith("http") ? "cursor-pointer" : ""}`}
+                    >
                       {project.title}
                     </h3>
                     
