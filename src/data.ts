@@ -128,17 +128,17 @@ export const portfolioData: PortfolioItem[] = [
     subtitle: "Direct Booking Guesthouse Experience",
     category: "Guesthouse Website",
     image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80",
-    demoUrl: "https://6a59b48fd8be37f22c0d6963--roaring-torte-fd3e46.netlify.app/#home",
+    demoUrl: "https://karoo-haven-demo.netlify.app/",
     tags: ["Direct Booking System", "Tailwind CSS", "Motion", "SEO Pack"]
   },
   {
     id: "port-2",
-    title: "The Obsidian Culinary Room",
-    subtitle: "High-End Gastronomy Editorial Site",
+    title: "L'ÉTOILE Karoo Restaurant",
+    subtitle: "Fine Dining & Local Culinary Experience",
     category: "Restaurant Website",
     image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80",
-    demoUrl: "#",
-    tags: ["Interactive Menu", "Table Booking", "Atmospheric Dark Mode"]
+    demoUrl: "https://elitekarooresturant.netlify.app/",
+    tags: ["Digital Menu", "Table Booking", "WhatsApp Ordering"]
   },
   {
     id: "port-3",
