@@ -70,26 +70,42 @@ export default function Portfolio() {
                 id={`project-card-${project.id}`}
               >
                 {/* Image Container with scale and hover zoom */}
-                <div 
-                  onClick={() => {
-                    if (project.demoUrl && project.demoUrl.startsWith("http")) {
-                      window.open(project.demoUrl, "_blank", "noopener,noreferrer");
-                    }
-                  }}
-                  className={`relative overflow-hidden aspect-[16/10] ${project.demoUrl && project.demoUrl.startsWith("http") ? "cursor-pointer" : ""}`} 
-                  id={`project-img-wrapper-${project.id}`}
-                >
-                  <img
-                    src={project.image}
-                    alt={`${project.title} Preview`}
-                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 filter brightness-95 group-hover:brightness-90"
-                    referrerPolicy="no-referrer"
-                    loading="lazy"
-                  />
-                  
-                  {/* Subtle Gradient Shadow Sheet */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent opacity-80"></div>
-                </div>
+                {project.demoUrl && project.demoUrl.startsWith("http") ? (
+                  <a
+                    href={project.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block relative overflow-hidden aspect-[16/10] cursor-pointer"
+                    id={`project-img-wrapper-${project.id}`}
+                  >
+                    <img
+                      src={project.image}
+                      alt={`${project.title} Preview`}
+                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 filter brightness-95 group-hover:brightness-90"
+                      referrerPolicy="no-referrer"
+                      loading="lazy"
+                    />
+                    
+                    {/* Subtle Gradient Shadow Sheet */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent opacity-80"></div>
+                  </a>
+                ) : (
+                  <div 
+                    className="relative overflow-hidden aspect-[16/10]" 
+                    id={`project-img-wrapper-${project.id}`}
+                  >
+                    <img
+                      src={project.image}
+                      alt={`${project.title} Preview`}
+                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 filter brightness-95 group-hover:brightness-90"
+                      referrerPolicy="no-referrer"
+                      loading="lazy"
+                    />
+                    
+                    {/* Subtle Gradient Shadow Sheet */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent opacity-80"></div>
+                  </div>
+                )}
 
                 {/* Floating Category Tag */}
                 <div className="absolute top-4 left-4 px-3.5 py-1 rounded-full bg-[#0B1120]/90 backdrop-blur-md border border-white/10 text-[10px] font-bold text-brand-cyan tracking-widest uppercase shadow">
@@ -103,31 +119,45 @@ export default function Portfolio() {
                   </span>
                   
                   <div className="flex items-center justify-between gap-4 mb-4">
-                    <h3 
-                      onClick={() => {
-                        if (project.demoUrl && project.demoUrl.startsWith("http")) {
-                          window.open(project.demoUrl, "_blank", "noopener,noreferrer");
-                        }
-                      }}
-                      className={`text-xl sm:text-2xl font-black font-display text-white group-hover:text-brand-cyan transition-colors ${project.demoUrl && project.demoUrl.startsWith("http") ? "cursor-pointer" : ""}`}
-                    >
-                      {project.title}
-                    </h3>
+                    {project.demoUrl && project.demoUrl.startsWith("http") ? (
+                      <a 
+                        href={project.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xl sm:text-2xl font-black font-display text-white group-hover:text-brand-cyan transition-colors"
+                      >
+                        <h3 className="inline">{project.title}</h3>
+                      </a>
+                    ) : (
+                      <h3 className="text-xl sm:text-2xl font-black font-display text-white group-hover:text-brand-cyan transition-colors">
+                        {project.title}
+                      </h3>
+                    )}
                     
                     {/* Live Demo Trigger (Interactive Simulator or Real External Link) */}
-                    <button 
-                      onClick={() => {
-                        if (project.demoUrl && project.demoUrl.startsWith("http")) {
-                          window.open(project.demoUrl, "_blank", "noopener,noreferrer");
-                        } else {
+                    {project.demoUrl && project.demoUrl.startsWith("http") ? (
+                      <a 
+                        href={project.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2.5 rounded-lg bg-white/5 hover:bg-brand-blue text-slate-300 hover:text-white transition-all duration-300 border border-white/5 hover:border-brand-blue/30 inline-flex items-center justify-center shrink-0"
+                        title="Launch Live Site"
+                        id={`project-link-${project.id}`}
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                      </a>
+                    ) : (
+                      <button 
+                        onClick={() => {
                           alert(`Launching the Live Demo Simulator for ${project.title}. This simulated sandbox represents a fully deployed agency build.`);
-                        }
-                      }}
-                      className="p-2.5 rounded-lg bg-white/5 hover:bg-brand-blue text-slate-300 hover:text-white transition-all duration-300 border border-white/5 hover:border-brand-blue/30 cursor-pointer"
-                      title={project.demoUrl && project.demoUrl.startsWith("http") ? "Launch Live Site" : "Launch Demo Sandbox"}
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                    </button>
+                        }}
+                        className="p-2.5 rounded-lg bg-white/5 hover:bg-brand-blue text-slate-300 hover:text-white transition-all duration-300 border border-white/5 hover:border-brand-blue/30 cursor-pointer shrink-0"
+                        title="Launch Demo Sandbox"
+                        id={`project-link-${project.id}`}
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                      </button>
+                    )}
                   </div>
 
                   {/* Badges/Tags Row */}
