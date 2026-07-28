@@ -31,12 +31,19 @@ export interface PortfolioItem {
   image: string;
   demoUrl?: string;
   tags: string[];
+  price?: string;
+  originalPrice?: string;
+  saleBanner?: string;
+  isSale?: boolean;
 }
 
 export interface PricingCard {
   id: string;
   name: string;
   price: string;
+  originalPrice?: string;
+  saleBanner?: string;
+  isSale?: boolean;
   period: string;
   description: string;
   features: { text: string; included: boolean }[];

@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "motion/react";
-import { Check, Sparkles, Plus, HelpCircle, ArrowRight } from "lucide-react";
+import { Check, Sparkles, Plus, HelpCircle, ArrowRight, Tag } from "lucide-react";
 import { pricingData } from "../data";
 
 export default function Pricing() {
@@ -63,32 +63,58 @@ export default function Pricing() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: Math.min(index * 0.08, 0.4) }}
               className={`rounded-3xl p-8 relative flex flex-col justify-between border transition-all duration-300 ${
-                plan.popular 
-                  ? "bg-[#0b1329] border-brand-cyan/40 shadow-xl shadow-brand-cyan/5 lg:scale-[1.02] z-10" 
-                  : "bg-slate-950/80 border-slate-800/80 hover:border-slate-700/80"
+                plan.isSale
+                  ? "bg-[#0a1829] border-emerald-500/50 shadow-xl shadow-emerald-500/10 z-10 hover:border-emerald-400"
+                  : plan.popular 
+                    ? "bg-[#0b1329] border-brand-cyan/40 shadow-xl shadow-brand-cyan/5 lg:scale-[1.02] z-10" 
+                    : "bg-slate-950/80 border-slate-800/80 hover:border-slate-700/80"
               }`}
               id={`pricing-card-${plan.id}`}
             >
-              {/* Most Popular Banner */}
-              {plan.popular && (
+              {/* Most Popular or Sale Banner */}
+              {plan.popular && !plan.isSale && (
                 <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-brand-blue to-brand-cyan text-[10px] font-black tracking-widest uppercase text-white shadow-md">
                   Most Popular
                 </div>
               )}
 
+              {plan.saleBanner && (
+                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-emerald-500 to-teal-400 text-slate-950 text-[10px] font-black tracking-widest uppercase shadow-md flex items-center gap-1.5 whitespace-nowrap">
+                  <Tag className="w-3 h-3 fill-slate-950/30" />
+                  <span>{plan.saleBanner}</span>
+                </div>
+              )}
+
               {/* Package Content */}
               <div>
-                <span className="block text-xs font-bold uppercase tracking-widest text-brand-cyan mb-2">
-                  {plan.name}
-                </span>
+                <div className="flex items-center justify-between mb-2">
+                  <span className={`block text-xs font-bold uppercase tracking-widest ${plan.isSale ? "text-emerald-400" : "text-brand-cyan"}`}>
+                    {plan.name}
+                  </span>
+                  {plan.isSale && (
+                    <span className="px-2 py-0.5 rounded text-[9px] font-black uppercase tracking-wider bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                      SPECIAL PROMO
+                    </span>
+                  )}
+                </div>
                 
-                <div className="flex items-baseline gap-1.5 mb-4">
-                  <span className="text-3xl sm:text-4xl font-black font-display text-white tracking-tight">
-                    {plan.price}
-                  </span>
-                  <span className="text-[10px] text-slate-400 font-sans tracking-wider uppercase ml-1">
-                    Once-Off
-                  </span>
+                <div className="flex flex-col mb-4">
+                  {plan.originalPrice && (
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-xs text-slate-400 line-through font-semibold">{plan.originalPrice}</span>
+                      <span className="text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20 uppercase">
+                        Limited Sale
+                      </span>
+                    </div>
+                  )}
+                  <div className="flex items-baseline gap-1.5">
+                    <span className={`text-3xl sm:text-4xl font-black font-display tracking-tight ${plan.isSale ? "text-emerald-400" : "text-white"}`}>
+                      {plan.price}
+                    </span>
+                    <span className="text-[10px] text-slate-400 font-sans tracking-wider uppercase ml-1">
+                      Once-Off
+                    </span>
+                  </div>
                 </div>
 
                 <p className="text-xs sm:text-sm text-slate-300 font-sans leading-relaxed mb-6">
@@ -100,7 +126,7 @@ export default function Pricing() {
                   <ul className="space-y-3">
                     {plan.features.map((feature, fIdx) => (
                       <li key={fIdx} className="flex items-start gap-2.5">
-                        <Check className="w-4 h-4 text-brand-cyan shrink-0 mt-0.5" />
+                        <Check className={`w-4 h-4 shrink-0 mt-0.5 ${plan.isSale ? "text-emerald-400" : "text-brand-cyan"}`} />
                         <span className="text-xs sm:text-sm font-sans text-slate-300">
                           {feature.text}
                         </span>
@@ -114,10 +140,12 @@ export default function Pricing() {
               <div>
                 <button
                   onClick={handleScrollToContact}
-                  className={`w-full py-3.5 px-6 rounded-xl font-display font-bold text-xs uppercase tracking-wider transition-all duration-300 ${
-                    plan.popular
-                      ? "bg-brand-cyan text-black hover:bg-white shadow-lg shadow-brand-cyan/10"
-                      : "bg-slate-900 text-white border border-slate-800 hover:bg-slate-800 hover:border-slate-700"
+                  className={`w-full py-3.5 px-6 rounded-xl font-display font-bold text-xs uppercase tracking-wider transition-all duration-300 cursor-pointer ${
+                    plan.isSale
+                      ? "bg-gradient-to-r from-emerald-500 to-teal-400 text-slate-950 hover:brightness-110 shadow-lg shadow-emerald-500/20"
+                      : plan.popular
+                        ? "bg-brand-cyan text-black hover:bg-white shadow-lg shadow-brand-cyan/10"
+                        : "bg-slate-900 text-white border border-slate-800 hover:bg-slate-800 hover:border-slate-700"
                   }`}
                   id={`pricing-action-${plan.id}`}
                 >

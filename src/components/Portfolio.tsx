@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ExternalLink, Sparkles, FolderOpen } from "lucide-react";
+import { ExternalLink, Sparkles, FolderOpen, Tag } from "lucide-react";
 import { portfolioData } from "../data";
 
 export default function Portfolio() {
@@ -112,11 +112,31 @@ export default function Portfolio() {
                   {project.category}
                 </div>
 
+                {/* Floating Sale Banner Badge */}
+                {project.saleBanner && (
+                  <div className="absolute top-4 right-4 z-20 px-3 py-1 rounded-full bg-gradient-to-r from-emerald-500 to-teal-400 text-slate-950 font-black text-[10px] sm:text-xs tracking-wider uppercase shadow-lg shadow-emerald-500/20 flex items-center gap-1.5 animate-pulse">
+                    <Tag className="w-3.5 h-3.5 fill-slate-950/30 shrink-0" />
+                    <span>{project.saleBanner}</span>
+                  </div>
+                )}
+
                 {/* Project Meta Information panel */}
                 <div className="p-6 relative" id={`project-meta-${project.id}`}>
-                  <span className="block text-xs font-bold text-slate-400 font-sans tracking-wide mb-1">
-                    {project.subtitle}
-                  </span>
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <span className="block text-xs font-bold text-slate-400 font-sans tracking-wide">
+                      {project.subtitle}
+                    </span>
+                    {project.price && (
+                      <div className="flex items-center gap-1.5 shrink-0">
+                        {project.originalPrice && (
+                          <span className="text-[11px] text-slate-500 line-through font-semibold">{project.originalPrice}</span>
+                        )}
+                        <span className="px-2 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/40 text-emerald-400 font-black text-xs tracking-tight">
+                          {project.price}
+                        </span>
+                      </div>
+                    )}
+                  </div>
                   
                   <div className="flex items-center justify-between gap-4 mb-4">
                     {project.demoUrl && project.demoUrl.startsWith("http") ? (

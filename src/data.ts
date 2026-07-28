@@ -129,7 +129,11 @@ export const portfolioData: PortfolioItem[] = [
     category: "Guesthouse Website",
     image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80",
     demoUrl: "https://karoo-haven-demo.netlify.app/",
-    tags: ["Direct Booking System", "Tailwind CSS", "Motion", "SEO Pack"]
+    tags: ["Direct Booking System", "Tailwind CSS", "Motion", "SEO Pack"],
+    price: "R3 500",
+    originalPrice: "R5,999",
+    saleBanner: "SPECIAL SALE • R3 500",
+    isSale: true
   },
   {
     id: "port-2",
@@ -138,7 +142,11 @@ export const portfolioData: PortfolioItem[] = [
     category: "Restaurant Website",
     image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80",
     demoUrl: "https://elitekarooresturant.netlify.app/",
-    tags: ["Digital Menu", "Table Booking", "WhatsApp Ordering"]
+    tags: ["Digital Menu", "Table Booking", "WhatsApp Ordering"],
+    price: "R3 500",
+    originalPrice: "R5,999",
+    saleBanner: "SPECIAL SALE • R3 500",
+    isSale: true
   },
   {
     id: "port-3",
@@ -226,7 +234,10 @@ export const pricingData: PricingCard[] = [
   {
     id: "price-4",
     name: "Restaurant Website",
-    price: "From R5,999",
+    price: "R3 500",
+    originalPrice: "R5,999",
+    saleBanner: "PROMO SALE — SAVE R2,499",
+    isSale: true,
     period: "one-time",
     description: "Everything a restaurant needs online.",
     features: [
@@ -241,12 +252,15 @@ export const pricingData: PricingCard[] = [
       { text: "Premium Design", included: true }
     ],
     popular: false,
-    buttonText: "Request Quote"
+    buttonText: "Claim R3 500 Special"
   },
   {
     id: "price-5",
     name: "Guesthouse Website",
-    price: "From R5,999",
+    price: "R3 500",
+    originalPrice: "R5,999",
+    saleBanner: "PROMO SALE — SAVE R2,499",
+    isSale: true,
     period: "one-time",
     description: "Designed to increase bookings.",
     features: [
@@ -261,7 +275,7 @@ export const pricingData: PricingCard[] = [
       { text: "Premium Design", included: true }
     ],
     popular: false,
-    buttonText: "Request Quote"
+    buttonText: "Claim R3 500 Special"
   },
   {
     id: "price-6",
